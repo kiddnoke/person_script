@@ -13,7 +13,9 @@ if [ $node_version != 'v10.13.0'];then
     cd node-v10.13.0-linux-x64
     cp -r * /usr
 fi
- 
+# install pm2 
+npm i pm2 -g 
+
 # install git 
 cd ~
 git_version=$(git --version)
@@ -26,13 +28,12 @@ if [ $git_version == 'git version 2.*'] ;then
     make -j8 && make install 
 fi 
 
-
 # pull VpnEdge
 cd ~
 rm -rf VpnEdge 
 git clone https://github.com/kiddnoke/VpnEdge.git
 cd VpnEdge
-git checkout v1.0.0
+git checkout v1.0.1
 python setup.py install --record install.txt 
 cat install.txt | xargs rm -f 
 python setup.py install --record install.txt 
@@ -41,5 +42,5 @@ python setup.py install --record install.txt
 cd ~ 
 git clone https://github.com/kiddnoke/NodeMgrAgent.git
 cd NodeMgrAgent
-git checkout v1.0.0
+git checkout v1.0.1
 npm i 
